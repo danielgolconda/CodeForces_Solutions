@@ -1,0 +1,68 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#define lld long long int
+using namespace std;
+int main() 
+{
+    lld n,p,k;
+    cin>>n>>p>>k;
+    lld x=(2*k)+1;
+    lld r=(p-k);
+    if(r < 1)
+    {
+        lld c=0;
+        while(r <= n && c<x)
+        {
+            if(r >= 1)
+            {
+                if(r == p)
+                {
+                    cout<<"("<<r<<")"<<" ";
+                }
+                else
+                {
+                    cout<<r<<" ";
+                }
+                
+            }
+            c++;
+            r++;
+        }
+            if(r <= n)
+            {
+                cout<<">>"<<"\n";
+            }
+    }
+    else
+    {
+        if(r > 1)
+        {
+            cout<<"<<"<<" ";
+        }
+        
+        lld c=0;
+        while(r <= n && c<x)
+        {
+            if(r >= 1)
+            {
+                if(r == p)
+                {
+                    cout<<"("<<r<<")"<<" ";
+                }
+                else
+                {
+                    cout<<r<<" ";
+                }
+                
+            }
+            c++;
+            r++;
+        }
+            if(r <= n)
+            {
+                cout<<">>"<<"\n";
+            }
+        
+    }
+	return 0;
+}

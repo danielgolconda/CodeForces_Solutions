@@ -1,0 +1,26 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#define lld long long int 
+using namespace std;
+int main() 
+{
+    lld a,b,c,d,ans=0,x;
+    cin>>a>>b>>c>>d;
+    vector <lld> v;
+    v.push_back(a);
+    v.push_back(b);
+    v.push_back(c);
+    sort(v.begin(),v.end());
+    x=v[1]-v[0];
+    if(x < d)
+    {
+        ans+=(d-x);
+    }
+    x=v[2]-v[1];
+        if(x < d)
+    {
+        ans+=(d-x);
+    }
+    cout<<ans<<endl;
+	return 0;
+}

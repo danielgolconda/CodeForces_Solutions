@@ -1,0 +1,30 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+#define INF -1e9
+vector <int> dp;
+int count(int n,int a,int b,int c)
+{
+    if(n == 0)
+    {
+        return 0;
+    }
+    if(n < 0)
+    {
+        return INF;
+    }
+    if(dp[n] != -1)
+    {
+        return dp[n];
+    }
+    return dp[n] = 1+max(count(n-a,a,b,c),max(count(n-b,a,b,c),count(n-c,a,b,c)));
+}
+int main() 
+{
+    int n,a,b,c;
+    cin >> n >> a >> b >> c;
+    dp.resize(n+1);
+    fill(dp.begin(),dp.end(),-1);
+    cout<<count(n,a,b,c)<<endl;
+	return 0;
+}

@@ -1,0 +1,98 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#define lld long long int
+using namespace std;
+int main() 
+{
+    vector <char> po;
+    po.push_back('A');
+    po.push_back('B');
+    po.push_back('C');
+    int n=po.size();
+    map <string,int> mp;
+    map <string,int> :: iterator it;
+    for(int i=0;i<(1<<n);i++)
+    {
+        string res;
+        for(int j=0;j<n;j++)
+        {
+            if(i&(1<<j))
+            {
+                res+=po[j];
+               // cout<<po[j];
+            }
+        }
+        if(res.size())
+        {
+            mp[res]=INT_MAX;
+            res.clear();
+        }
+    }
+    int z=INT_MAX;
+    int m;
+    cin >> m;
+    for(int i=0;i<m;i++)
+    {
+        int x;
+        string s;
+        cin >> x >> s;
+        sort(s.begin(),s.end());
+        int h=mp[s];
+        mp[s]=min(h,x);
+    }
+    vector <pair<string,int>> v;
+    for(it=mp.begin();it!=mp.end();it++)
+    {
+        if(it->second != z)
+        {
+            v.push_back(make_pair(it->first,it->second));
+        }
+    }
+    string want;
+    want.push_back('A');
+    want.push_back('B');
+    want.push_back('C');
+    n=v.size();
+    int mi=INT_MAX,flag=0;
+    for(int i=0;i<(1<<n);i++)
+    {
+        string res;
+        int su=0;
+        for(int j=0;j<v.size();j++)
+        {
+            if(i&(1<<j))
+            {
+                res+=(v[j].first);  
+                su+=v[j].second;
+            }
+        }
+        //cout<<res<<endl;
+        //sort(res.begin(),res.end());
+        set <char> st;
+        set <char> :: iterator it1;
+        for(int i=0;i<res.size();i++)
+        {
+            st.insert(res[i]);
+        }
+        string res1;
+        for(it1 = st.begin();it1!=st.end();it1++)
+        {
+            res1+=(*it1);
+        }
+        sort(res1.begin(),res1.end());
+        if(res1 == want)
+        {
+            flag=1;
+            mi=min(su,mi);
+        }
+    }
+    if(flag)
+    {
+        cout<<mi<<endl;
+    }
+    else
+    {
+        cout<<-1<<endl;
+    }
+	return 0;
+}

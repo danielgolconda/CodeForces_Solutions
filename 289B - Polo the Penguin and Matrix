@@ -1,0 +1,45 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#define lld long long int
+using namespace std;
+int main() 
+{
+    int n,m,d;
+    cin >> n >> m >> d;
+    vector <int> v;
+    map <int,int> mp;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            int x;
+            cin >> x;
+            v.push_back(x);
+            mp[x%d]+=1;
+        }
+    }
+    sort(v.begin(),v.end());
+    if(mp.size() > 1)
+    {
+        cout<<-1<<endl;
+    }
+    else
+    {
+        int mid;
+        if(v.size()&1)
+        {
+            mid=floor(v.size()/2);
+        }
+        else
+        {
+            mid=(v.size()/2);
+        }
+        int c=0;
+        for(int i=0;i<v.size();i++)
+        {
+            c+=(abs(v[i]-v[mid])/d);
+        }
+        cout<<c<<endl;
+    }
+	return 0;
+}
